@@ -61,18 +61,16 @@ docker-compose restart nginx
 
 ## 📍 Erişim Adresleri
 
-- Frontend: `https://nexaven.com.tr/zorlu.ecu`
-- API: `https://nexaven.com.tr/zorlu.ecu/api`
-- Health Check: `https://nexaven.com.tr/zorlu.ecu/api/health`
-- Ana Port: `http://nexaven.com.tr:8888/zorlu.ecu`
-- Alternatif Port: `http://nexaven.com.tr:9000/zorlu.ecu`
+- **HTTP**: `http://nexaven.com.tr/zorlu.ecu`
+- **HTTPS**: `https://nexaven.com.tr/zorlu.ecu` (SSL setup sonrası)
+- **API**: `http://nexaven.com.tr/zorlu.ecu/api`
+- **Health Check**: `http://nexaven.com.tr/zorlu.ecu/api/health`
 
 ## 🔌 Kullanılan Portlar
 
-- **3001**: Backend API (FastAPI/Python)
-- **8888**: HTTP Ana Port (Nginx)
-- **9000**: HTTP Alternatif Port (Nginx)
-- **443**: HTTPS (SSL sertifikası sonrası)
+- **80**: HTTP (Nginx reverse proxy)
+- **443**: HTTPS (Nginx reverse proxy, SSL setup sonrası)
+- **3001**: Backend API (FastAPI/Python, internal only)
 
 ## 📊 Yönetim Komutları
 
@@ -107,10 +105,8 @@ DB_NAME=zorluforce
 
 ```bash
 sudo ufw allow ssh
-sudo ufw allow 3001/tcp  # Backend API
-sudo ufw allow 8888/tcp  # HTTP Ana
-sudo ufw allow 9000/tcp  # HTTP Alternatif
-sudo ufw allow 443/tcp   # HTTPS
+sudo ufw allow 80/tcp   # HTTP
+sudo ufw allow 443/tcp  # HTTPS
 sudo ufw enable
 ```
 

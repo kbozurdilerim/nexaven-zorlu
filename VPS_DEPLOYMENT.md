@@ -197,10 +197,8 @@ sudo apt install ufw
 
 # Temel portları açma
 sudo ufw allow ssh
-sudo ufw allow 3001/tcp  # Backend API
-sudo ufw allow 8888/tcp  # HTTP Ana
-sudo ufw allow 9000/tcp  # HTTP Alternatif
-sudo ufw allow 443/tcp   # HTTPS
+sudo ufw allow 80/tcp   # HTTP
+sudo ufw allow 443/tcp  # HTTPS
 
 # Firewall'ı aktifleştirme
 sudo ufw enable
@@ -326,26 +324,22 @@ Sorun yaşarsanız:
 Deployment sonrası test edin:
 
 ```bash
-# Frontend (Port 8888)
-curl http://nexaven.com.tr:8888/zorlu.ecu
+# Frontend (HTTP)
+curl http://nexaven.com.tr/zorlu.ecu
 
 # Backend API
-curl http://nexaven.com.tr:8888/zorlu.ecu/api/health
+curl http://nexaven.com.tr/zorlu.ecu/api/health
 
-# Backend direkt erişim
+# Backend direkt erişim (container içinden)
 curl http://localhost:3001/api/health
 
-# 9000 portu (alternatif)
-curl http://nexaven.com.tr:9000/zorlu.ecu
-
-# SSL (HTTPS kurulduysa)
+# HTTPS (SSL kurulduysa)
 curl https://nexaven.com.tr/zorlu.ecu
 ```
 
 Tarayıcıda: 
-- `http://nexaven.com.tr:8888/zorlu.ecu`
-- `http://nexaven.com.tr:9000/zorlu.ecu`
-- `https://nexaven.com.tr/zorlu.ecu` (SSL sonrası)
+- `http://nexaven.com.tr/zorlu.ecu`
+- `https://nexaven.com.tr/zorlu.ecu` (SSL kurulduktan sonra)
 
 ## 🔐 Güvenlik Önerileri
 

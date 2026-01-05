@@ -109,26 +109,22 @@ docker-compose restart nginx
 
 After deployment, access the application at:
 
-- **Main Application**: `http://your-domain:8888/zorlu.ecu`
-- **Alternative Port**: `http://your-domain:9000/zorlu.ecu`
-- **API**: `http://your-domain:8888/zorlu.ecu/api`
-- **HTTPS** (after SSL): `https://your-domain/zorlu.ecu`
+- **Application**: `http://nexaven.com.tr/zorlu.ecu`
+- **HTTPS** (after SSL): `https://nexaven.com.tr/zorlu.ecu`
+- **API**: `http://nexaven.com.tr/zorlu.ecu/api`
 
 ## 🔌 Port Configuration
 
-- **3001** - Backend API (FastAPI/Python)
-- **8888** - HTTP Main Port (Nginx)
-- **9000** - HTTP Alternative Port (Nginx)
-- **443** - HTTPS (after SSL setup)
+- **80** - HTTP (Nginx reverse proxy)
+- **443** - HTTPS (Nginx reverse proxy, configured with Let's Encrypt)
+- **3001** - Backend API (FastAPI/Python, internal only)
 
 ### Firewall Configuration
 
 ```bash
 sudo ufw allow ssh
-sudo ufw allow 3001/tcp
-sudo ufw allow 8888/tcp
-sudo ufw allow 9000/tcp
-sudo ufw allow 443/tcp
+sudo ufw allow 80/tcp   # HTTP
+sudo ufw allow 443/tcp  # HTTPS
 sudo ufw enable
 ```
 
